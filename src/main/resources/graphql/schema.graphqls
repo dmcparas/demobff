@@ -1,0 +1,13 @@
+type Query {
+    getUserInfo(userId: String!): User
+    getSequence: User
+    getParallel: [String]
+    getGraphQLSequence: User
+    getGraphQLParallel: User
+}
+
+type User {
+    id: String
+    name: String
+    email: String
+}
