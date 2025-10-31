@@ -25,24 +25,25 @@ public class UserQueryResolver {
     private final RestTemplate restTemplate = new RestTemplate();
     ObjectMapper objectMapper = new ObjectMapper();
     private final ApiService apiService = new ApiService();
+    String baseUrl = "http://localhost:8081";
 
     @QueryMapping
     public User getUserInfo(@Argument String userId) {
-        String url = "http://localhost:8081/api/users/" + userId;
+        String url = baseUrl + "/api/users/" + userId;
         return restTemplate.getForObject(url, User.class);
     }
 
     @QueryMapping
     public User getGraphQLSequence() {
-            String url1 = "http://localhost:8081/graphql";
+            String url1 = baseUrl + "/graphql";
 
             String query1 = "query { user(id: \"123\") { id name email } }";
 
-            String url2 = "http://localhost:8081/graphql";
+            String url2 = baseUrl + "/graphql";
 
             String query2 = "query { user(id: \"456\") { id name email } }";
 
-            String url3 = "http://localhost:8081/graphql";
+            String url3 = baseUrl + "/graphql";
 
             String query3 = "query { user(id: \"789\") { id name email } }";
 
@@ -75,7 +76,7 @@ public class UserQueryResolver {
 
     @QueryMapping
     public User getGraphQLParallel() {
-        String url = "http://localhost:8081/graphql";
+        String url = baseUrl + "/graphql";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -116,9 +117,9 @@ public class UserQueryResolver {
 
     @QueryMapping
     public User getSequence() {
-        String url1 = "http://localhost:8081/api/users/1";
-        String url2 = "http://localhost:8081/api/users/2";
-        String url3 = "http://localhost:8081/api/users/3";
+        String url1 = baseUrl + "/api/users/1";
+        String url2 = baseUrl + "/api/users/2";
+        String url3 = baseUrl + "/api/users/3";
         User user;
         user = restTemplate.getForObject(url1, User.class);
         user = restTemplate.getForObject(url2, User.class);
@@ -133,9 +134,9 @@ public class UserQueryResolver {
 
         try {
             // Define API URLs
-            String url1 = "http://localhost:8081/api/users/1";
-            String url2 = "http://localhost:8081/api/users/2";
-            String url3 = "http://localhost:8081/api/users/3";
+            String url1 = baseUrl + "/api/users/1";
+            String url2 = baseUrl + "/api/users/2";
+            String url3 = baseUrl + "/api/users/3";
 
             // Create callables for each API
             List<Callable<String>> tasks = Arrays.asList(
