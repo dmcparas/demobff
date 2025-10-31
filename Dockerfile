@@ -1,17 +1,12 @@
-# Use OpenJDK 17 as base image
-FROM openjdk:17-jdk-slim
-
-# Set working directory inside the container
+# Stage 1: Build the JAR using Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the built JAR file into the container
-COPY target/bffservice-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the default Spring Boot port
+# Stage 2: Run the JAR with OpenJDK
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Optional: expose gRPC port if needed
-#EXPOSE 9090
-
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=8080", "--server.address=0.0.0.0"]
