@@ -25,7 +25,7 @@ public class UserQueryResolver {
     private final RestTemplate restTemplate = new RestTemplate();
     ObjectMapper objectMapper = new ObjectMapper();
     private final ApiService apiService = new ApiService();
-    String baseUrl = "http://localhost:8081";
+    String baseUrl = "https://democore.onrender.com";
 
     @QueryMapping
     public User getUserInfo(@Argument String userId) {
