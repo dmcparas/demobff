@@ -9,7 +9,7 @@ import com.example.core.grpc.UserResponse;
 
 @Service
 public class UserClientService {
-    @GrpcClient("user-service")
+    @GrpcClient("core-service")
     private UserServiceGrpc.UserServiceBlockingStub userServiceStub;
 
     public UserResponse getUser(String id) {
