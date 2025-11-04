@@ -2,6 +2,7 @@ type Query {
     getUserInfo(userId: String!): User
     getSequence: User
     getParallel: [String]
+    getGraphQL: User
     getGraphQLSequence: User
     getGraphQLParallel: User
 }

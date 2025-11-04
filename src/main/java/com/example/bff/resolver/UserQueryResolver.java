@@ -36,6 +36,31 @@ public class UserQueryResolver {
     }
 
     @QueryMapping
+    public User getGraphQL() {
+        String url1 = baseUrl1 + "/graphql";
+
+        String query1 = "query { user(id: \"123\") { id name email } }";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("query", query1);
+
+        HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
+        ResponseEntity<String> response = restTemplate.postForEntity(url1, request, String.class);
+
+        // Deserialize JSON to GraphQLResponse
+        GraphQLResponse graphQLResponse = null;
+        try {
+            graphQLResponse = objectMapper.readValue(response.getBody(), GraphQLResponse.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return graphQLResponse.getData() != null ? graphQLResponse.getData().getUser() : null;
+    }
+
+    @QueryMapping
     public User getGraphQLSequence() {
             String url1 = baseUrl1 + "/graphql";
 
