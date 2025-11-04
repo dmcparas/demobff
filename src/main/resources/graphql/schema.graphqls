@@ -10,4 +10,26 @@ type User {
     id: String
     name: String
     email: String
+    address: String
+    phoneNumber: String
+    bio: String
+    hobbies: [String]
+    socialLinks: SocialLinks
+    profilePictureBase64: String
+    notes: String
+    tags: [String]
+    preferences: Preferences
+}
+
+type SocialLinks {
+    facebook: String
+    twitter: String
+    linkedin: String
+}
+
+type Preferences {
+    theme: String
+    notifications: Boolean
+    language: String
+    timezone: String
 }
