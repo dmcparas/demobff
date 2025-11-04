@@ -30,8 +30,8 @@ public class User {
         this.email = email;
         this.address = "123 Dummy Street, Faketown, Imaginaryland, Planet Earth, Solar System, Milky Way Galaxy, Universe";
         this.phoneNumber = "+1234567890";
-        this.bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(20) +
-                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ".repeat(20);
+        this.bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(50) +
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ".repeat(50);
         this.hobbies = List.of(
                 "reading", "gaming", "coding", "traveling", "photography", "painting", "hiking", "cycling",
                 "cooking", "blogging", "knitting", "woodworking", "birdwatching", "gardening", "fishing"
@@ -45,8 +45,8 @@ public class User {
                 Map.entry("youtube", "https://youtube.com/dummyuser"),
                 Map.entry("tiktok", "https://tiktok.com/@dummyuser")
         );
-        this.profilePictureBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "A".repeat(1500); // Simulated large base64 string
-        this.notes = ("This is a long note field meant to simulate a larger payload. ".repeat(100)) +
+        this.profilePictureBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "A".repeat(2500); // Simulated large base64 string
+        this.notes = ("This is a long note field meant to simulate a larger payload. ".repeat(500)) +
                 "End of notes.";
         this.tags = List.of(
                 "admin", "tester", "beta-user", "premium", "inactive", "early-access", "vip", "moderator",
