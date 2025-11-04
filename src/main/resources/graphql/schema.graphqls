@@ -26,6 +26,10 @@ type SocialLinks {
     facebook: String
     twitter: String
     linkedin: String
+    instagram: String
+    github: String
+    youtube: String
+    tiktok: String
 }
 
 type Preferences {
@@ -33,4 +37,23 @@ type Preferences {
     notifications: Boolean
     language: String
     timezone: String
+    dashboard: Dashboard
+    privacy: Privacy
+    shortcuts: [String]
+    bookmarks: [Bookmark]
+}
+
+type Dashboard {
+    layout: String
+    widgets: [String]
+}
+
+type Privacy {
+    tracking: Boolean
+    adPersonalization: Boolean
+}
+
+type Bookmark {
+    title: String
+    url: String
 }
