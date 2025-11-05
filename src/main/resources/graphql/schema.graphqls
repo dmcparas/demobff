@@ -1,10 +1,10 @@
 type Query {
-    getUserInfo(userId: String!): User
-    getSequence: User
-    getParallel: [String]
-    getGraphQL: User
-    getGraphQLSequence: User
-    getGraphQLParallel: User
+    getGraphQLToRestSingle(userId: String!): User
+    getGraphQLToRestSequence: User
+    getGraphQLToRestParallel: [String]
+    getGraphQLToGRPCSingle: User
+    getGraphQLToGRPCSequence: User
+    getGraphQLToGRPCParallel: User
 }
 
 type User {
