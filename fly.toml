@@ -1,0 +1,20 @@
+app = "demobff"
+primary_region = "lhr"  # choose your nearest region
+
+[build]
+dockerfile = "Dockerfile"
+
+[[services]]
+# The client itself does not expose gRPC, just its own HTTP/REST (if any)
+internal_port = 8080
+protocol = "tcp"
+
+[[services.ports]]
+port = 80
+handlers = ["http"]  # for REST/API if your client exposes any web endpoints
+
+# Optional health check
+[[services.http_checks]]
+interval = "15s"
+timeout = "2s"
+path = "/actuator/health"
