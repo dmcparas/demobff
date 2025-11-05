@@ -20,7 +20,7 @@ public class User {
     private String profilePictureBase64;
     private String notes;
     private List<String> tags;
-    private String preferencesJson;
+    private String preferences;
 
     public User() {}
 
@@ -30,8 +30,8 @@ public class User {
         this.email = email;
         this.address = "123 Dummy Street, Faketown, Imaginaryland, Planet Earth, Solar System, Milky Way Galaxy, Universe";
         this.phoneNumber = "+1234567890";
-        this.bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(50) +
-                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ".repeat(50);
+        this.bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(750) +
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ".repeat(750);
         this.hobbies = List.of(
                 "reading", "gaming", "coding", "traveling", "photography", "painting", "hiking", "cycling",
                 "cooking", "blogging", "knitting", "woodworking", "birdwatching", "gardening", "fishing"
@@ -45,14 +45,14 @@ public class User {
                 Map.entry("youtube", "https://youtube.com/dummyuser"),
                 Map.entry("tiktok", "https://tiktok.com/@dummyuser")
         );
-        this.profilePictureBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "A".repeat(2500); // Simulated large base64 string
-        this.notes = ("This is a long note field meant to simulate a larger payload. ".repeat(500)) +
+        this.profilePictureBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "A".repeat(38000); // Simulated large base64 string
+        this.notes = ("This is a long note field meant to simulate a larger payload. ".repeat(7500)) +
                 "End of notes.";
         this.tags = List.of(
                 "admin", "tester", "beta-user", "premium", "inactive", "early-access", "vip", "moderator",
                 "contributor", "reviewer", "developer", "support", "subscriber", "guest", "legacy"
         );
-        this.preferencesJson = "{"
+        this.preferences = "{"
                 + "\"theme\":\"dark\","
                 + "\"notifications\":true,"
                 + "\"language\":\"en\","
@@ -102,6 +102,6 @@ public class User {
     public List<String> getTags() { return tags; }
     public void setTags(List<String> tags) { this.tags = tags; }
 
-    public String getPreferencesJson() { return preferencesJson; }
-    public void setPreferencesJson(String preferencesJson) { this.preferencesJson = preferencesJson; }
+    public String getPreferences() { return preferences; }
+    public void setPreferences(String preferences) { this.preferences = preferences; }
 }
