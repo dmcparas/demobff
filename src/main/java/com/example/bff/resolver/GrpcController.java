@@ -4,16 +4,14 @@ import com.example.bff.model.User;
 import com.example.core.grpc.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api/users/grpc")
+@CrossOrigin(origins = "*")
 public class GrpcController {
 
     private final UserClientService userClientService;
