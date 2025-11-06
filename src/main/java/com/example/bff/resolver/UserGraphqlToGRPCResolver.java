@@ -19,24 +19,24 @@ public class UserGraphqlToGRPCResolver {
     }
 
     @QueryMapping
-    public ResponseEntity<User> getGraphQLToGRPCSingle() {
+    public User getGraphQLToGRPCSingle() {
         UserResponse response = userClientService.getUser(String.valueOf(1));
         User dto = new User(response.getId(), response.getName(), response.getEmail());
-        return ResponseEntity.ok(dto);
+        return dto;
     }
 
     @QueryMapping
-    public ResponseEntity<User> getGraphQLToGRPCSequence() {
+    public User getGraphQLToGRPCSequence() {
         UserResponse response;
         response = userClientService.getUser(String.valueOf(1));
         response = userClientService.getUser(String.valueOf(2));
         response = userClientService.getUser(String.valueOf(3));
         User dto = new User(response.getId(), response.getName(), response.getEmail());
-        return ResponseEntity.ok(dto);
+        return dto;
     }
 
     @QueryMapping
-    public ResponseEntity<User> getGraphQLToGRPCParallel() {
+    public User getGraphQLToGRPCParallel() {
         // Launch gRPC calls in parallel
         CompletableFuture<UserResponse> future1 = CompletableFuture.supplyAsync(() -> userClientService.getUser(String.valueOf(1)));
         CompletableFuture<UserResponse> future2 = CompletableFuture.supplyAsync(() -> userClientService.getUser(String.valueOf(2)));
@@ -51,11 +51,11 @@ public class UserGraphqlToGRPCResolver {
             // Example: return the last response as DTO
             UserResponse response = future3.get();
             User dto = new User(response.getId(), response.getName(), response.getEmail());
-            return ResponseEntity.ok(dto);
+            return dto;
 
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-            return ResponseEntity.status(500).build();
+            return null;
         }
     }
 }
