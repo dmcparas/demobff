@@ -1,5 +1,5 @@
 type Query {
-    getGraphQLToRestSingle(userId: String!): User
+    getGraphQLToRestSingle: User
     getGraphQLToRestSequence: User
     getGraphQLToRestParallel: [String]
     getGraphQLToGRPCSingle: User

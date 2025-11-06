@@ -24,8 +24,8 @@ public class UserGraphqlToRestResolver {
     String baseUrl3 = Constant.URL3;
 
     @QueryMapping
-    public User getGraphQLToRestSingle(@Argument String userId) {
-        String url = baseUrl1 + "/api/users/" + userId;
+    public User getGraphQLToRestSingle() {
+        String url = baseUrl1 + "/api/users/1";
         return restTemplate.getForObject(url, User.class);
     }
 
