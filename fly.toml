@@ -1,7 +1,7 @@
 app = "demobff"
 primary_region = "lhr"  # choose your nearest region
 
-[build]
+
 dockerfile = "Dockerfile"
 
 [[services]]
