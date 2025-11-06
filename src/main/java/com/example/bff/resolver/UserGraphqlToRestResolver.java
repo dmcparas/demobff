@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -14,6 +15,7 @@ import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 @Controller
+@CrossOrigin(origins = "*")
 public class UserGraphqlToRestResolver {
 
     private final RestTemplate restTemplate = new RestTemplate();

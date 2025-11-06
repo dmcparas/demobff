@@ -5,12 +5,14 @@ import com.example.core.grpc.UserResponse;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @Controller
+@CrossOrigin(origins = "*")
 public class UserGraphqlToGRPCResolver {
     private final UserClientService userClientService;
 
