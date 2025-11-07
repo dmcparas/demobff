@@ -23,7 +23,7 @@ public class UserGraphqlToGRPCResolver {
     @QueryMapping
     public User getGraphQLToGRPCSingle() {
         UserResponse response = userClientService.getUser(String.valueOf(1));
-        User dto = new User(response.getId(), response.getName(), response.getEmail());
+        User dto = new User(response.getId(), response.getName(), response.getEmail(), 55);
         return dto;
     }
 
@@ -33,7 +33,7 @@ public class UserGraphqlToGRPCResolver {
         response = userClientService.getUser(String.valueOf(1));
         response = userClientService.getUser(String.valueOf(2));
         response = userClientService.getUser(String.valueOf(3));
-        User dto = new User(response.getId(), response.getName(), response.getEmail());
+        User dto = new User(response.getId(), response.getName(), response.getEmail(), 55);
         return dto;
     }
 
@@ -52,7 +52,7 @@ public class UserGraphqlToGRPCResolver {
 
             // Example: return the last response as DTO
             UserResponse response = future3.get();
-            User dto = new User(response.getId(), response.getName(), response.getEmail());
+            User dto = new User(response.getId(), response.getName(), response.getEmail(), 55);
             return dto;
 
         } catch (InterruptedException | ExecutionException e) {

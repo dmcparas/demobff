@@ -20,24 +20,24 @@ public class UserRestToGrpcController {
     }
 
     @GetMapping("/single")
-    public ResponseEntity<User> getUserSingle() {
+    public ResponseEntity<User> getUserSingle(@RequestParam(required = false, defaultValue = "55") int size) {
         UserResponse response = userClientService.getUser(String.valueOf(1));
-        User dto = new User(response.getId(), response.getName(), response.getEmail());
+        User dto = new User(response.getId(), response.getName(), response.getEmail(), size);
         return ResponseEntity.ok(dto);
     }
 
     @GetMapping("/sequence")
-    public ResponseEntity<User> getUserSequence() {
+    public ResponseEntity<User> getUserSequence(@RequestParam(required = false, defaultValue = "55") int size) {
         UserResponse response;
         response = userClientService.getUser(String.valueOf(1));
         response = userClientService.getUser(String.valueOf(2));
         response = userClientService.getUser(String.valueOf(3));
-        User dto = new User(response.getId(), response.getName(), response.getEmail());
+        User dto = new User(response.getId(), response.getName(), response.getEmail(), size);
         return ResponseEntity.ok(dto);
     }
 
     @GetMapping("/parallel")
-    public ResponseEntity<User> getUserParallel() {
+    public ResponseEntity<User> getUserParallel(@RequestParam(required = false, defaultValue = "55") int size) {
         // Launch gRPC calls in parallel
         CompletableFuture<UserResponse> future1 = CompletableFuture.supplyAsync(() -> userClientService.getUser(String.valueOf(1)));
         CompletableFuture<UserResponse> future2 = CompletableFuture.supplyAsync(() -> userClientService.getUser(String.valueOf(2)));
@@ -51,7 +51,7 @@ public class UserRestToGrpcController {
 
             // Example: return the last response as DTO
             UserResponse response = future3.get();
-            User dto = new User(response.getId(), response.getName(), response.getEmail());
+            User dto = new User(response.getId(), response.getName(), response.getEmail(), size);
             return ResponseEntity.ok(dto);
 
         } catch (InterruptedException | ExecutionException e) {

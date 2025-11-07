@@ -6,6 +6,7 @@ import com.example.bff.model.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -25,18 +26,18 @@ public class UserRestToRestController {
     String baseUrl3 = Constant.URL3;
 
     @GetMapping("/single")
-    public User getUserInfo() {
-        String url1 = baseUrl1 + "/api/users/1";
+    public User getUserInfo(@RequestParam(required = false, defaultValue = "55") int size) {
+        String url1 = baseUrl1 + "/api/users/1?size=" + size;
         User user;
         user = restTemplate.getForObject(url1, User.class);
         return user;
     }
 
     @GetMapping("/sequence")
-    public User getUserInfoSequence() {
-        String url1 = baseUrl1 + "/api/users/1";
-        String url2 = baseUrl2 + "/api/users/2";
-        String url3 = baseUrl3 + "/api/users/3";
+    public User getUserInfoSequence(@RequestParam(required = false, defaultValue = "55") int size) {
+        String url1 = baseUrl1 + "/api/users/1?size=" + size;
+        String url2 = baseUrl2 + "/api/users/2?size=" + size;
+        String url3 = baseUrl3 + "/api/users/3?size=" + size;
         User user;
         user = restTemplate.getForObject(url1, User.class);
         user = restTemplate.getForObject(url2, User.class);
@@ -45,15 +46,15 @@ public class UserRestToRestController {
     }
 
     @GetMapping("/parallel")
-    public List<String> getUserInfoParallel() throws InterruptedException, ExecutionException {
+    public List<String> getUserInfoParallel(@RequestParam(required = false, defaultValue = "55") int size) throws InterruptedException, ExecutionException {
 
         ExecutorService executor = Executors.newFixedThreadPool(3);
 
         try {
             // Define API URLs
-            String url1 = baseUrl1 + "/api/users/1";
-            String url2 = baseUrl2 + "/api/users/2";
-            String url3 = baseUrl3 + "/api/users/3";
+            String url1 = baseUrl1 + "/api/users/1?size=" + size;
+            String url2 = baseUrl2 + "/api/users/2?size=" + size;
+            String url3 = baseUrl3 + "/api/users/3?size=" + size;
 
             // Create callables for each API
             List<Callable<String>> tasks = Arrays.asList(

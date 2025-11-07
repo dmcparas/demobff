@@ -24,14 +24,14 @@ public class User {
 
     public User() {}
 
-    public User(String id, String name, String email) {
+    public User(String id, String name, String email, int size) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.address = "123 Dummy Street, Faketown, Imaginaryland, Planet Earth, Solar System, Milky Way Galaxy, Universe";
         this.phoneNumber = "+1234567890";
-        this.bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(30) +
-                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ".repeat(30);
+        this.bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ".repeat(10*size) +
+                "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ".repeat(10*size);
         this.hobbies = List.of(
                 "reading", "gaming", "coding", "traveling", "photography", "painting", "hiking", "cycling",
                 "cooking", "blogging", "knitting", "woodworking", "birdwatching", "gardening", "fishing"
@@ -45,8 +45,8 @@ public class User {
                 Map.entry("youtube", "https://youtube.com/dummyuser"),
                 Map.entry("tiktok", "https://tiktok.com/@dummyuser")
         );
-        this.profilePictureBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "A".repeat(1500); // Simulated large base64 string
-        this.notes = ("This is a long note field meant to simulate a larger payload. ".repeat(150)) +
+        this.profilePictureBase64 = "iVBORw0KGgoAAAANSUhEUgAAAAUA" + "A".repeat(500*size); // Simulated large base64 string
+        this.notes = ("This is a long note field meant to simulate a larger payload. ".repeat(50*size)) +
                 "End of notes.";
         this.tags = List.of(
                 "admin", "tester", "beta-user", "premium", "inactive", "early-access", "vip", "moderator",
