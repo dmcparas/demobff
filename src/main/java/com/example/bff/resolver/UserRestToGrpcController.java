@@ -4,6 +4,7 @@ import com.example.bff.model.User;
 import com.example.core.grpc.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -17,6 +18,23 @@ public class UserRestToGrpcController {
 
     public UserRestToGrpcController(UserClientService userClientService) {
         this.userClientService = userClientService;
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
+        try {
+            // Save the file temporarily to disk
+            String tempFilePath = System.getProperty("java.io.tmpdir") + "/" + file.getOriginalFilename();
+            file.transferTo(new java.io.File(tempFilePath));
+
+            // Call gRPC client
+            userClientService.uploadFile(tempFilePath);
+
+            return ResponseEntity.ok("File uploaded successfully via gRPC.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("File upload failed: " + e.getMessage());
+        }
     }
 
     @GetMapping("/single")

@@ -5,6 +5,9 @@ option java_package = "com.example.core.grpc";
 
 service UserService {
   rpc GetUser(UserRequest) returns (UserResponse);
+
+  //RPC for file upload
+  rpc UploadFile(stream FileUploadRequest) returns (FileUploadResponse);
 }
 
 message UserRequest {
@@ -15,4 +18,15 @@ message UserResponse {
   string id = 1;
   string name = 2;
   string email = 3;
+}
+
+// File upload messages
+message FileUploadRequest {
+  string filename = 1;   // Send the filename in the first chunk
+  bytes content = 2;     // File content chunk
+}
+
+message FileUploadResponse {
+  bool success = 1;
+  string message = 2;
 }
