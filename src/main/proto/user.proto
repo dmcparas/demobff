@@ -8,6 +8,7 @@ service UserService {
 
   //RPC for file upload
   rpc UploadFile(stream FileUploadRequest) returns (FileUploadResponse);
+  rpc UploadFileToKafka(stream FileUploadRequest) returns (FileUploadResponse);
 }
 
 message UserRequest {

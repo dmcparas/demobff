@@ -37,6 +37,23 @@ public class UserRestToGrpcController {
         }
     }
 
+    @PostMapping("/upload/grpc/kafka")
+    public ResponseEntity<?> uploadFileToKafka(@RequestParam("file") MultipartFile file) {
+        try {
+            // Save the file temporarily to disk
+            String tempFilePath = System.getProperty("java.io.tmpdir") + "/" + file.getOriginalFilename();
+            file.transferTo(new java.io.File(tempFilePath));
+
+            // Call gRPC client
+            userClientService.uploadFileToKafka(tempFilePath);
+
+            return ResponseEntity.ok("File uploaded successfully via gRPC.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("File upload failed: " + e.getMessage());
+        }
+    }
+
     @GetMapping("/single")
     public ResponseEntity<User> getUserSingle(@RequestParam(required = false, defaultValue = "55") int size) {
         UserResponse response = userClientService.getUser(String.valueOf(1));
